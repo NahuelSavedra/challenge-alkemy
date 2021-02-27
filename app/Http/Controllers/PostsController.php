@@ -13,4 +13,9 @@ class PostsController extends Controller
             'posts' => Post::orderBy('id', 'desc')->paginate(10)
         ]);
     }
+    public function show($id){
+        return view('posts.show', [
+            'post' => Post::find($id)
+        ]);
+    }
 }

@@ -1,12 +1,16 @@
 @extends('layout')
 
 @section('content')
-    
 
+<section id="One" class="wrapper style3">
+    <div class="inner">
+        <header class="align-center">
+            <h2>Latest post</h2>
+        </header>
+    </div>
+</section>
 
 <section class="wrapper style2">
-    <h2 class="align-center box">Latest posts</h2>
-<br>
     <div class="inner">
         <div class="grid-style">
 
@@ -22,7 +26,7 @@
                             <p>Created at: {{ $post->created_at }}</p>
                     
                             <footer class="align-center">
-                                <a href="#" class="button alt">Learn More</a>
+                                <a href="/posts/{{ $post->id }}" class="button alt">Learn More</a>
                             </footer>
                         </div>
                     </div>
