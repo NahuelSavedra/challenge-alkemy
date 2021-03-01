@@ -15,7 +15,7 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<div class="logo"><a href="index.html">Blog <span>by Nahuel</span></a></div>
+				<div class="logo"><a href="/">Blog <span>by Nahuel</span></a></div>
 			</header>
 
 
