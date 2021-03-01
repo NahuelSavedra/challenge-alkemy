@@ -9,17 +9,21 @@ class PostsController extends Controller
 {
     //
     public function index(){
+
         return view('posts.index', [
             'posts' => Post::orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
     public function show($id){
+
         return view('posts.show', [
             'post' => Post::find($id)
         ]);
     }
+
     public function create(){
+
         return view('posts.create');
     }
 
@@ -30,9 +34,26 @@ class PostsController extends Controller
         $post->title = request('title');
         $post->body = request('body');
 
+        $post->save();
+
+        return redirect('/posts/'.$post->id);
+    }
+
+    public function edit($id){
+
+        return view('posts.edit', [
+            'post' => Post::find($id)
+        ]);    
+    }
+    public function update($id){
+        $post = Post::find($id);
+
+        $post->title = request('title');
+        $post->body = request('body');
 
         $post->save();
 
-        return redirect()->route('posts.show',$post);
+        return redirect('/posts/'.$post->id);
+
     }
 }
