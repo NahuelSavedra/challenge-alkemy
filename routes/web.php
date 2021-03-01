@@ -18,11 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts', [PostsController::class,'index'] );
-Route::post('/posts', [PostsController::class,'store'] );
-Route::get('/posts/create', [PostsController::class,'create'] );
-Route::get('/posts/{id}', [PostsController::class,'show'] );
-Route::get('/posts/{id}/edit', [PostsController::class,'edit'] );
-Route::patch('/posts/{id}', [PostsController::class,'update']);
-Route::delete('posts/{id}', [PostsController::class,'destroy']);
+Route::get('/posts', [PostsController::class,'index'] )->name('posts.index');
+Route::post('/posts', [PostsController::class,'store'] )->name('posts.store');
+Route::get('/posts/create', [PostsController::class,'create'] )->name('posts.create');
+Route::get('/posts/{post}', [PostsController::class,'show'] )->name('posts.show');
+Route::get('/posts/{post}/edit', [PostsController::class,'edit'] )->name('posts.edit');
+Route::patch('/posts/{post}', [PostsController::class,'update'])->name('posts.update');
+Route::delete('posts/{post}', [PostsController::class,'destroy'])->name('posts.destroy');
 

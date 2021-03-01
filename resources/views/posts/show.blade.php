@@ -23,7 +23,7 @@
 				</div>
 			</section>
 			<div class="container">
-			<form action="/posts/{{ $post->id }}" method="POST">
+			<form action="{{ route('posts.destroy',$post) }}" method="POST">
 			@method('DELETE')
 			@csrf
 			<button type="submit" class="button special">Detele Post</button>

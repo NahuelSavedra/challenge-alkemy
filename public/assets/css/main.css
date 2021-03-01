@@ -4310,3 +4310,9 @@
 			}
 
 		}
+		.error{
+			color: red;
+		}
+		.danger{
+			border-color: red!important;
+		}

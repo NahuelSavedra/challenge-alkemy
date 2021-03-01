@@ -10,59 +10,48 @@ class PostsController extends Controller
     //
     public function index(){
 
-        return view('posts.index', [
-            'posts' => Post::orderBy('id', 'desc')->paginate(10)
-        ]);
+        $posts = Post::latest()->paginate();
+        return view('posts.index',compact('posts'));
     }
 
-    public function show($id){
-
-        return view('posts.show', [
-            'post' => Post::find($id)
-        ]);
+    public function show(Post $post){
+        return view('posts.show', compact('post'));
     }
 
     public function create(){
-
         return view('posts.create');
     }
 
-    public function store(){
+    public function store(Post $post){
 
-        $post = new Post();
+        $post = Post::create($this->validatePost());
 
-        $post->title = request('title');
-        $post->body = request('body');
-
-        $post->save();
-
-        return redirect('/posts/'.$post->id);
+        return redirect(route('post.show',$post->id));
     }
 
-    public function edit($id){
-
-        return view('posts.edit', [
-            'post' => Post::find($id)
-        ]);    
+    public function edit(Post $post){
+        return view('posts.edit',compact('post'));    
     }
-    public function update($id){
-        $post = Post::find($id);
 
-        $post->title = request('title');
-        $post->body = request('body');
+    public function update(Post $post){
 
-        $post->save();
+        $post->update($this->validatePost());
 
-        return redirect('/posts/'.$post->id);
+        return redirect(route('posts.show',$post->id));
 
     }
 
-    public function destroy($id){
+    public function destroy(Post $post){
 
-        $post=Post::find($id);
         $post->delete();
 
-        return redirect('/posts');
+        return redirect(route('posts.index'));
 
+    }
+    public function validatePost(){
+        return request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]);
     }
 }

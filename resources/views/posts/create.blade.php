@@ -16,11 +16,23 @@
         <form method="POST" action="/posts" enctype="multipart/form-data">
         @csrf
             <label for="title">Title: </label>
-            <input type="text" name="title">
+            <input type="text" name="title"
+            @error('title') class="danger" @enderror 
+            value="{{ old('title') }}">
+
+            @error('title')
+            <p class="error">{{ $errors->first('title') }}</p>
+            @enderror
+
             <br>
 
             <label for="body">Body:</label>
-            <textarea name="body" id="body" cols="30" rows="10"></textarea>
+            <textarea @error('body') class="danger" @enderror name="body" id="body" cols="30" rows="10">
+            {{ old('body') }}
+            </textarea>
+            @error('body')
+            <p class="error">{{ $errors->first('body') }}</p>
+            @enderror
             <br>
 
             <button class="button special fit" type="submit">Send</button>
