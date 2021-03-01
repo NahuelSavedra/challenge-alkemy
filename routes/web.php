@@ -24,5 +24,5 @@ Route::get('/posts/create', [PostsController::class,'create'] );
 Route::get('/posts/{id}', [PostsController::class,'show'] );
 Route::get('/posts/{id}/edit', [PostsController::class,'edit'] );
 Route::patch('/posts/{id}', [PostsController::class,'update']);
-
+Route::delete('posts/{id}', [PostsController::class,'destroy']);
 

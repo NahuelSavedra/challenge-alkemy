@@ -22,5 +22,13 @@
 					</div>
 				</div>
 			</section>
+			<div class="container">
+			<form action="/posts/{{ $post->id }}" method="POST">
+			@method('DELETE')
+			@csrf
+			<button type="submit" class="button special">Detele Post</button>
+			</form>
+			</div>
+
 
 @endsection
